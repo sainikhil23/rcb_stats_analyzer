@@ -1,0 +1,18 @@
+[
+  {
+    "match": "RCB vs MI",
+    "runs_scored": 185,
+    "wickets_taken": 6,
+    "result": "win",
+    "top_scorer": "Virat Kohli",
+    "top_scorer_runs": 82
+  },
+  {
+    "match": "RCB vs CSK",
+    "runs_scored": 154,
+    "wickets_taken": 4,
+    "result": "loss",
+    "top_scorer": "Faf du Plessis",
+    "top_scorer_runs": 51
+  }
+]
