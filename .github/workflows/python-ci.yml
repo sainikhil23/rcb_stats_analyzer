@@ -1,4 +1,4 @@
-name: Python CI
+name: Dockerized Python CI
 
 on:
   push:
@@ -11,20 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Install dependencies
+      - name: Build Docker image for testing
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest
+          docker build -t rcb-stats-analyzer .
 
-      - name: Run tests
+      - name: Run tests inside Docker container
         run: |
-          export PYTHONPATH=.
-          pytest tests
+          docker run --rm rcb-stats-analyzer
