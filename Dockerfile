@@ -1,17 +1,17 @@
-# Base image with Python 3.12
+# Base Python image
 FROM python:3.12-slim
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy all files into the container
+# Copy everything into the container
 COPY . .
 
-# Set PYTHONPATH so Python can find rcb_stats
+# Set PYTHONPATH for module resolution
 ENV PYTHONPATH=/app
 
 # Install dependencies
-RUN pip install --upgrade pip && pip install pytest
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Default command to run tests
-CMD ["pytest"]
+# Run tests with coverage
+CMD ["pytest", "--cov=rcb_stats", "--cov-report=term", "tests/"]

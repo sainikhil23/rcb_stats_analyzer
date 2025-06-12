@@ -1,4 +1,4 @@
-name: Dockerized Python CI
+name: Dockerized Python CI with Coverage
 
 on:
   push:
@@ -18,9 +18,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image for testing
-        run: |
-          docker build -t rcb-stats-analyzer .
+        run: docker build -t rcb-stats-analyzer .
 
-      - name: Run tests inside Docker container
-        run: |
-          docker run --rm rcb-stats-analyzer
+      - name: Run container and display coverage
+        run: docker run --rm rcb-stats-analyzer
